@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه خیریه</title>
+    <title>صفحه خیریه چند زبانه</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             direction: rtl;
             text-align: center;
             padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .flags {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .flags img {
+            cursor: pointer;
+            margin: 0 10px;
+            width: 40px;
         }
         .wallet {
-            margin: 20px 0;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .qrcode {
             margin-top: 10px;
@@ -29,32 +47,65 @@
         .copy-button:hover {
             background-color: #0056b3;
         }
+        .content {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .wallets {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
 
-    <h1>صفحه خیریه</h1>
-    <p>برای حمایت از ما می‌توانید کمک‌های خود را به ولت‌های زیر واریز کنید:</p>
-
-    <div class="wallet">
-        <h2>ترون (TRON)</h2>
-        <p id="tron-address">آدرس ولت ترون: TXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-        <div class="qrcode" id="tron-qrcode"></div>
-        <button class="copy-button" onclick="copyToClipboard('tron-address')">کپی آدرس</button>
+    <div class="flags">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Farsi.svg/32px-Farsi.svg.png" alt="فارسی" onclick="changeLanguage('fa')">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/32px-Flag_of_the_United_States.svg.png" alt="English" onclick="changeLanguage('en')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_Armenia.svg/32px-Flag_of_Armenia.svg.png" alt="العربية" onclick="changeLanguage('ar')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/32px-Flag_of_Germany.svg.png" alt="Deutsch" onclick="changeLanguage('de')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/32px-Flag_of_Russia.svg.png" alt="Русский" onclick="changeLanguage('ru')">
     </div>
 
-    <div class="wallet">
-        <h2>بیت‌کوین (Bitcoin)</h2>
-        <p id="btc-address">آدرس ولت بیت‌کوین: 1XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-        <div class="qrcode" id="btc-qrcode"></div>
-        <button class="copy-button" onclick="copyToClipboard('btc-address')">کپی آدرس</button>
+    <h1 id="page-title">صفحه خیریه</h1>
+    <p id="page-description">برای حمایت از ما می‌توانید کمک‌های خود را به ولت‌های زیر واریز کنید:</p>
+
+    <div class="wallets">
+        <div class="wallet">
+            <h2 id="tron-title">ترون (TRON)</h2>
+            <p id="tron-address">آدرس ولت ترون: TjwptPbEc274yecENfsrzsckdqbaLjGjNW</p>
+            <div class="qrcode" id="tron-qrcode"></div>
+            <button class="copy-button" onclick="copyToClipboard('tron-address')">کپی آدرس</button>
+        </div>
+
+        <div class="wallet">
+            <h2 id="btc-title">بیت‌کوین (Bitcoin)</h2>
+            <p id="btc-address">آدرس ولت بیت‌کوین: bc1q8u3ga8rfvv5kev2d3j43lu9uc8nvnmp55uh55l</p>
+            <div class="qrcode" id="btc-qrcode"></div>
+            <button class="copy-button" onclick="copyToClipboard('btc-address')">کپی آدرس</button>
+        </div>
+
+        <div class="wallet">
+            <h2 id="eth-title">اتریوم (Ethereum)</h2>
+            <p id="eth-address">آدرس ولت اتریوم: 0x69DB7887C8BC92Db0eb4c4d74963aEA3B6DaC569</p>
+            <div class="qrcode" id="eth-qrcode"></div>
+            <button class="copy-button" onclick="copyToClipboard('eth-address')">کپی آدرس</button>
+        </div>
     </div>
 
-    <div class="wallet">
-        <h2>اتریوم (Ethereum)</h2>
-        <p id="eth-address">آدرس ولت اتریوم: 0xXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-        <div class="qrcode" id="eth-qrcode"></div>
-        <button class="copy-button" onclick="copyToClipboard('eth-address')">کپی آدرس</button>
+    <div class="content">
+        <h2>امور خیریه ما</h2>
+        <p>ما در تلاشیم تا با تهیه آب و غذا و کمک به بی‌سرپرستان و ایجاد کار، به بهبود زندگی مردم کمک کنیم.</p>
+        <img src="https://example.com/charity-image1.jpg" alt="کمک به نیازمندان">
+        <img src="https://example.com/charity-image2.jpg" alt="تهیه غذا">
+        <img src="https://example.com/charity-image3.jpg" alt="ایجاد کار">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -70,9 +121,65 @@
             alert('آدرس کپی شد: ' + tempInput.value);
         }
 
-        new QRCode(document.getElementById("tron-qrcode"), "TXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        new QRCode(document.getElementById("btc-qrcode"), "1XXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        new QRCode(document.getElementById("eth-qrcode"), "0xXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        new QRCode(document.getElementById("tron-qrcode"), "TjwptPbEc274yecENfsrzsckdqbaLjGjNW");
+        new QRCode(document.getElementById("btc-qrcode"), "bc1q8u3ga8rfvv5kev2d3j43lu9uc8nvnmp55uh55l");
+        new QRCode(document.getElementById("eth-qrcode"), "0x69DB7887C8BC92Db0eb4c4d74963aEA3B6DaC569");
+
+        const translations = {
+            fa: {
+                pageTitle: "صفحه خیریه",
+                pageDescription: "برای حمایت از ما می‌توانید کمک‌های خود را به ولت‌های زیر واریز کنید:",
+                tronTitle: "ترون (TRON)",
+                btcTitle: "بیت‌کوین (Bitcoin)",
+                ethTitle: "اتریوم (Ethereum)",
+                copyButtonText: "کپی آدرس"
+            },
+            en: {
+                pageTitle: "Charity Page",
+                pageDescription: "To support us, you can donate to the following wallets:",
+                tronTitle: "Tron (TRON)",
+                btcTitle: "Bitcoin (BTC)",
+                ethTitle: "Ethereum (ETH)",
+                copyButtonText: "Copy Address"
+            },
+            ar: {
+                pageTitle: "صفحة التبرعات",
+                pageDescription: "لدعمنا يمكنك التبرع إلى المحافظ التالية:",
+                tronTitle: "ترون (TRON)",
+                btcTitle: "بيتكوين (BTC)",
+                ethTitle: "إيثريوم (ETH)",
+                copyButtonText: "نسخ العنوان"
+            },
+            de: {
+                pageTitle: "Spenden Seite",
+                pageDescription: "Um uns zu unterstützen, können Sie an die folgenden Wallets spenden:",
+                tronTitle: "Tron (TRON)",
+                btcTitle: "Bitcoin (BTC)",
+                ethTitle: "Ethereum (ETH)",
+                copyButtonText: "Adresse kopieren"
+            },
+            ru: {
+                pageTitle: "Страница благотворительности",
+                pageDescription: "Чтобы поддержать нас, вы можете пожертвовать на следующие кошельки:",
+                tronTitle: "Трон (TRON)",
+                btcTitle: "Биткойн (BTC)",
+                ethTitle: "Эфириум (ETH)",
+                copyButtonText: "Копировать адрес"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('page-title').textContent = translations[lang].pageTitle;
+            document.getElementById('page-description').textContent = translations[lang].pageDescription;
+            document.getElementById('tron-title').textContent = translations[lang].tronTitle;
+            document.getElementById('btc-title').textContent = translations[lang].btcTitle;
+            document.getElementById('eth-title').textContent = translations[lang].ethTitle;
+            var copyButtons = document.getElementsByClassName('copy-button');
+            for (var i = 0; i < copyButtons.length; i++) {
+                copyButtons[i].textContent = translations[lang].copyButtonText;
+            }
+            document.body.style.direction = lang === 'ar' || lang === 'fa' ? 'rtl' : 'ltr';
+        }
     </script>
 </body>
 </html>
