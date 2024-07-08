@@ -1,56 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity for the Needy</title>
+    <title>صفحه خیریه</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            direction: rtl;
             text-align: center;
-            background-color: #f4f4f4;
-        }
-        .container {
-            margin: 50px auto;
             padding: 20px;
-            max-width: 800px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #333;
+        .wallet {
+            margin: 20px 0;
         }
-        p {
-            font-size: 18px;
-            color: #666;
-        }
-        .donate-button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 20px;
-        }
-        .crypto-address {
-            font-family: monospace;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ddd;
-            display: inline-block;
+        .qrcode {
             margin-top: 10px;
+        }
+        .copy-button {
+            margin-top: 10px;
+            cursor: pointer;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .copy-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Support the Needy and Famine-Stricken People</h1>
-        <p>Your cryptocurrency donations can make a significant difference in the lives of those in need.</p>
-        <p>Donate Bitcoin to the following address:</p>
-        <div class="crypto-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</div>
-        <p>Donate Ethereum to the following address:</p>
-        <div class="crypto-address">0x32Be343B94f860124dC4fEe278FDCBD38C102D88</div>
-        <a href="https://www.example.com/donate" class="donate-button">Learn More About Our Cause</a>
+
+    <h1>صفحه خیریه</h1>
+    <p>برای حمایت از ما می‌توانید کمک‌های خود را به ولت‌های زیر واریز کنید:</p>
+
+    <div class="wallet">
+        <h2>ترون (TRON)</h2>
+        <p id="tron-address">آدرس ولت ترون: TXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+        <div class="qrcode" id="tron-qrcode"></div>
+        <button class="copy-button" onclick="copyToClipboard('tron-address')">کپی آدرس</button>
     </div>
+
+    <div class="wallet">
+        <h2>بیت‌کوین (Bitcoin)</h2>
+        <p id="btc-address">آدرس ولت بیت‌کوین: 1XXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+        <div class="qrcode" id="btc-qrcode"></div>
+        <button class="copy-button" onclick="copyToClipboard('btc-address')">کپی آدرس</button>
+    </div>
+
+    <div class="wallet">
+        <h2>اتریوم (Ethereum)</h2>
+        <p id="eth-address">آدرس ولت اتریوم: 0xXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+        <div class="qrcode" id="eth-qrcode"></div>
+        <button class="copy-button" onclick="copyToClipboard('eth-address')">کپی آدرس</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            var address = document.getElementById(elementId).textContent;
+            var tempInput = document.createElement('input');
+            tempInput.value = address.split(': ')[1]; // Extracting address part only
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('آدرس کپی شد: ' + tempInput.value);
+        }
+
+        new QRCode(document.getElementById("tron-qrcode"), "TXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        new QRCode(document.getElementById("btc-qrcode"), "1XXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        new QRCode(document.getElementById("eth-qrcode"), "0xXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    </script>
 </body>
 </html>
